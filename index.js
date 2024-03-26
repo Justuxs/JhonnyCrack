@@ -28,9 +28,9 @@ async function main() {
 }
 
 
-while (1) {
   try {
     main();
   } catch (error) {
+        main();
   }
-}
+
