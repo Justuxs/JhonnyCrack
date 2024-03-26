@@ -12,7 +12,7 @@ async function main() {
     let mnemonic = wallet.mnemonic.phrase; // mnemonic
     let address = wallet.address; // address
     let balance = ethers.formatEther(await provider.getBalance(wallet.address)); // balance
-    if (i % 500 === 0) {
+    if (i % 10000 === 0) {
         console.log(balance); // Log the balance
         i = 1;
     }
@@ -23,26 +23,14 @@ async function main() {
       console.log(balance);
       console.log(wallet);
       console.log(address);
-
-      // found ether in wallet
-      let crackedData;
-      await fs
-        .readFile("./cracked.json") // log to json file
-        .then((data) => {
-          crackedData = JSON.parse(data);
-        })
-        .catch((err) => {
-          throw err;
-        });
-
-      crackedData[address] = { mnemonic: mnemonic, balance: balance };
-      await fs.writeFile(
-        "./cracked.json",
-        JSON.stringify(crackedData, null, 4),
-        "utf8"
-      );
     }
   }
 }
 
-main();
+
+while (1) {
+  try {
+    main();
+  } catch (error) {
+  }
+}
